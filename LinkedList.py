@@ -176,7 +176,7 @@ def reveredLinkedList2(pHead):
         return pHead
     reversed = None
     current = pHead
-    while current is not None:
+    while current:
         temp = current
         current = current.next
         temp.next = reversed
@@ -386,7 +386,25 @@ def findCircleNode(pHead1):
         temp=temp.next
     return pHead1
 
-
+def isSymmetrical(pHead):
+    # 判断单向链表是对称链表
+    newPhead=pHead
+    record=[]
+    while newPhead:
+        record.append(newPhead.val)
+        newPhead=newPhead.next
+    size=len(record)
+    mid=size/2
+    if size%2==0:
+        #链表长度为偶数,对称的两个位置的索引号之和一直是size-1
+        for j in range(mid):
+            if record[j]!=record[size-1-j]:
+                return False
+    else:
+        for i in range(1,mid+1):
+            if record[mid-i]!=record[mid+i]:
+                return False
+    return True
 
 if __name__ == "__main__":
     # a=createList(5)
@@ -398,7 +416,7 @@ if __name__ == "__main__":
     # print "=="*4
     # c=delete(b,3)
     # printList(c)
-    a = createListNode([2,6,9,11,24])
+    a = createListNode([2,3,3,2])
     b=createListNode([1,3,10,9,11,24])
     # rever = findMidItem(a)
     # print rever.val
@@ -406,6 +424,8 @@ if __name__ == "__main__":
     # cur=mergeRecursive(a,b)
     # print cur.val
     # print isLoop(a)
-    print getFirstCommonNode(a,b)
-    print findCircleNode(b)
-
+    # print getFirstCommonNode(a,b)
+    # print findCircleNode(b)
+    c=reveredLinkedList1(b)
+    printList(c)
+    print isSymmetrical(a)
