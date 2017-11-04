@@ -96,7 +96,7 @@ def preOrder1(root):
     :return:
     """
     if not root:
-        return
+        return root
     stackNode = [root]
     while stackNode:
         node = stackNode.pop()
@@ -179,7 +179,7 @@ def findPostOrder(preList, midList, afterList):
         return
     if len(preList) == 1:
         afterList.append(preList[0])
-        return
+        return afterList
     root = preList[0]
     n = midList.index(root)
     findPostOrder(preList[1:n + 1], midList[:n], afterList)
